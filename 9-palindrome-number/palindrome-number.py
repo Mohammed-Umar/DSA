@@ -4,7 +4,6 @@ class Solution:
         copy_str = ""
         for digit in x_str:
             if not digit.isnumeric():
-                print('Sign encountered.')
                 return False
 
             else:
