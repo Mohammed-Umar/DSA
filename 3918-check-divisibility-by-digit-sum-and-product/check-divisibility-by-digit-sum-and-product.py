@@ -1,6 +1,5 @@
 class Solution:
     def checkDivisibility(self, n: int) -> bool:
-        # sum of digits
         copy_n = n
         sum = 0
         prod = 1
