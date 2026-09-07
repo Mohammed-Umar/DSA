@@ -9,10 +9,8 @@ class Solution:
 
     # Slide the window across the rest of the string
     for i in range(k, len(s)):
-      # Add the incoming character
       if s[i] in vowels:
         current_count += 1
-      # Remove the outgoing character
       if s[i - k] in vowels:
         current_count -= 1
 
