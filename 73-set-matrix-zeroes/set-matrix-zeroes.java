@@ -1,26 +1,45 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-
         int m = matrix.length;
         int n = matrix[0].length;
 
-        int[] row = new int[m];
-        int[] col = new int[n];
+        // matrix[i][0] --> first column
+        // matrix[0][j] --> first row 
+        boolean col0 = false; // flag for the first column
 
-        for(int i = 0;i < m;i++) {
-            for(int j = 0;j < n;j++) {
-                if(matrix[i][j] == 0) {
-                    row[i] = 1;
-                    col[j] = 1;
+        // Step 1: Mark zeros on first row and first column
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                col0 = true;
+            }
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
                 }
             }
         }
-        // Make zeroes..
-        for(int i = 0;i < m;i++) {
-            for(int j = 0;j < n;j++) {
-                if(row[i] == 1 || col[j] == 1 ) {
+
+        // Step 2: Update inner matrix (from 1,1 to m-1, n-1) using markers
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
                     matrix[i][j] = 0;
                 }
+            }
+        }
+
+        // Step 3: Update the first row if needed
+        if (matrix[0][0] == 0) {
+            for (int j = 0; j < n; j++) {
+                matrix[0][j] = 0;
+            }
+        }
+
+        // Step 4: Update the first column if needed
+        if (col0) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
             }
         }
     }
